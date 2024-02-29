@@ -1,7 +1,34 @@
 <template>
-  <div>
-    <h1>Popup</h1>
-  </div>
+  <n-config-provider
+    abstract
+    :theme="lightTheme"
+    :theme-overrides="themeOverrides"
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+  >
+    <n-message-provider>
+      <router-view></router-view>
+    </n-message-provider>
+  </n-config-provider>
 </template>
-<script setup></script>
+<script>
+import { defineComponent, provide } from 'vue'
+import { zhCN, dateZhCN, darkTheme, lightTheme, useMessage } from 'naive-ui'
+export default defineComponent({
+  setup() {
+    const themeOverrides = {
+      common: {
+        fontWeightStrong: '600'
+      }
+    }
+    return {
+      zhCN,
+      dateZhCN,
+      darkTheme,
+      lightTheme,
+      themeOverrides
+    }
+  }
+})
+</script>
 <style scoped lang="less"></style>
