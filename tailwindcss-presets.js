@@ -10,18 +10,7 @@ const spacingsSettings = spacings.reduce((pre, cur) => {
 module.exports = {
   theme: {
     extend: {
-      colors: {
-        primary: '#1888ff',
-        gp: {
-          content: '#D8E3F6',
-          sub: '#EDF1F8',
-          cur: '#ED726E',
-          dash: '#FF6969',
-          dMain: '#1990FF',
-          dSub: '#1DD5D6',
-          dCur: '#3054EB'
-        }
-      }
+      colors: {}
     },
     spacing: {
       1: '1px',
