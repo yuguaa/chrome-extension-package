@@ -21,7 +21,14 @@
       <n-card class="h-full w-full">
         <n-el class="h-full flex justify-center">
           <n-el class="flex flex-col items-center mt-200">
-            <n-el>
+            <n-el class="flex items-center">
+              <n-select
+                v-model:value="currentEngine"
+                :options="btnOptions"
+                @update:value="handleUpdateCurrentEngine"
+                class="mr-4"
+                :style="{ width: '90px' }"
+              />
               <n-input-group>
                 <n-input v-model:value="keyword" :style="{ width: '400px' }" @keyup.enter="handleSearch" />
                 <n-button type="primary" ghost @click.enter="handleSearch"> 搜 索 </n-button>
@@ -34,7 +41,7 @@
                   ghost
                   :type="typeOptions[index]"
                   :key="index"
-                  @click="useSearch"
+                  @click="useSearch(item.engine)"
                 >
                   {{ item.label }}
                 </n-button>
@@ -51,7 +58,7 @@
 import { defineComponent, inject, ref } from 'vue'
 import { MoonSharp, Sunny } from '@vicons/ionicons5'
 import IconImage from '../../../icons/icon.png'
-import { getEngine, getEngineOptions } from '../../../utils/cookie'
+import { getEngine, getEngineOptions, setEngine } from '../../../utils/cookie'
 
 export default defineComponent({
   name: 'NewTab',
@@ -62,6 +69,7 @@ export default defineComponent({
   setup() {
     const themeInject = inject('theme')
     const { changeTheme, getTheme } = themeInject
+    const btnOptions = getEngineOptions()
     const active = ref(!!getTheme())
     const handleUpdateValue = value => {
       changeTheme()
@@ -69,13 +77,20 @@ export default defineComponent({
     }
 
     const keyword = ref('')
-
+    const currentEngine = ref(getEngine().value)
+    const handleUpdateCurrentEngine = value => {
+      currentEngine.value = value
+      const engine = btnOptions.find(item => item.value === value)
+      setEngine(engine)
+    }
     const handleSearch = () => {
-      const engine = getEngine().engine
+      const engine = btnOptions.find(item => item.value === currentEngine.value)
+      window.open(`${engine.engine}${keyword.value}`)
+    }
+
+    const useSearch = engine => {
       window.open(`${engine}${keyword.value}`)
     }
-    const btnOptions = getEngineOptions()
-    const useSearch = engine => {}
     const typeOptions = ['info', 'success', 'warning', 'error', 'default', 'primary', 'secondary']
     return {
       active,
@@ -86,8 +101,10 @@ export default defineComponent({
       keyword,
       handleSearch,
       useSearch,
+      currentEngine,
       btnOptions,
-      typeOptions
+      typeOptions,
+      handleUpdateCurrentEngine
     }
   }
 })
