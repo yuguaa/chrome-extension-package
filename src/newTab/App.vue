@@ -11,6 +11,7 @@
 <script>
 import { defineComponent, provide, ref } from 'vue'
 import { zhCN, dateZhCN, darkTheme, NThemeEditor } from 'naive-ui'
+import { getLocalTheme, setLocalTheme } from '../utils/cookie'
 export default defineComponent({
   components: {
     NThemeEditor
@@ -21,11 +22,18 @@ export default defineComponent({
         fontWeightStrong: '600'
       }
     }
-    let theme = ref(null)
+
+    let theme = ref(getLocalTheme())
+
     const changeTheme = () => {
       theme.value = theme.value === null ? darkTheme : null
+      if (theme.value) {
+        setLocalTheme('dark')
+      } else {
+        setLocalTheme('light')
+      }
     }
-    provide('theme', changeTheme)
+    provide('theme', { changeTheme: changeTheme, getTheme: () => theme.value })
     return {
       theme,
       darkTheme,

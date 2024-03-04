@@ -1,33 +1,36 @@
 <template>
   <n-card>
     <n-form ref="formRef" :label-width="80" :model="formValue" :rules="rules" size="medium">
-      <n-form-item label="URL:" path="url">
-        <n-input v-model:value="formValue.url" type="text" placeholder="请输入" />
+      <n-form-item label="ENGINE:" path="engine">
+        <n-select v-model:value="formValue.engine" :options="options" class="w-full" :style="{ width: '100%' }" />
       </n-form-item>
       <n-form-item>
-        <n-button @click="handleSetUrl">设置</n-button>
+        <n-button @click="handleSetEngine">设置</n-button>
       </n-form-item>
     </n-form>
   </n-card>
 </template>
 <script>
 import { useMessage } from 'naive-ui'
-import { ref, defineComponent } from 'vue'
-import { getTabUrl, setTabUrl } from '../../../../utils/cookie'
+import { ref, defineComponent, reactive } from 'vue'
+import { getEngine, setEngine, setEngineOptions, getEngineOptions } from '../../../../utils/cookie'
 export default defineComponent({
   setup() {
     const message = useMessage()
     const formRef = ref(null)
     const formValue = ref({
-      url: getTabUrl()
+      engine: getEngine().value
     })
+
+    const options = reactive(getEngineOptions())
     const rules = {
-      url: { required: true, message: '请输入URL', trigger: 'blur' }
+      engine: { required: true, message: '选择ENGINE', trigger: 'blur' }
     }
-    const handleSetUrl = () => {
+    const handleSetEngine = () => {
       formRef.value?.validate(errors => {
         if (!errors) {
-          setTabUrl(formValue.value.url)
+          const engine = options.find(item => item.value === formValue.value.engine)
+          setEngine(engine)
           message.success('设置成功')
         } else {
           console.log(errors)
@@ -35,11 +38,13 @@ export default defineComponent({
         }
       })
     }
+
     return {
       formRef,
       formValue,
       rules,
-      handleSetUrl
+      handleSetEngine,
+      options
     }
   }
 })
