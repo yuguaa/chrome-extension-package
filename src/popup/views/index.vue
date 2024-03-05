@@ -5,6 +5,9 @@
         <n-tab-pane name="tab" tab="新标签页">
           <SetUrl />
         </n-tab-pane>
+        <n-tab-pane class="max-h-[300px] overflow-auto scrollbar-common" name="tools" tab="常用工具">
+          <SetTools />
+        </n-tab-pane>
         <n-tab-pane class="max-h-[300px] overflow-auto scrollbar-common" name="engine" tab="搜索引擎">
           <SetSearchEngine />
         </n-tab-pane>
@@ -14,6 +17,7 @@
 </template>
 <script setup>
 import SetUrl from './components/SetUrl/index.vue'
+import SetTools from './components/SetTools/index.vue'
 import SetSearchEngine from './components/SetSearchEngine/index.vue'
 </script>
 <style scoped lang="less"></style>

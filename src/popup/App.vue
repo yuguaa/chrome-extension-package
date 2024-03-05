@@ -1,6 +1,7 @@
 <template>
   <n-config-provider
     abstract
+    preflight-style-disabled
     :theme="lightTheme"
     :theme-overrides="themeOverrides"
     :locale="zhCN"

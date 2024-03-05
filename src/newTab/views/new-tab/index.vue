@@ -4,7 +4,7 @@
       class="h-56 leading-[56px] flex justify-between items-center px-20 border-b-[1px] border-[var(--primary-color)]"
     >
       <n-el>
-        <n-gradient-text type="danger"> PINE-STORM </n-gradient-text>
+        <n-gradient-text type="danger"> {{ logo }} </n-gradient-text>
       </n-el>
       <n-switch :value="active" @update:value="handleUpdateValue">
         <template #checked>深色</template>
@@ -47,6 +47,18 @@
                 </n-button>
               </n-space>
             </n-el>
+            <n-el class="mt-40">
+              <n-space :size="40">
+                <n-el :key="index" v-for="(item, index) in AIOptions" @click="handleAI(item)">
+                  <n-badge :type="typeOptions[index]" :value="item.label">
+                    <n-avatar class="cursor-pointer" v-if="item.logo" :size="80" :src="item.logo"></n-avatar>
+                    <n-avatar class="cursor-pointer" v-else :size="80" :src="item.logo">
+                      {{ item.label }}
+                    </n-avatar>
+                  </n-badge>
+                </n-el>
+              </n-space>
+            </n-el>
           </n-el>
         </n-el>
       </n-card>
@@ -55,10 +67,10 @@
 </template>
 
 <script>
-import { defineComponent, inject, ref } from 'vue'
+import { defineComponent, inject, reactive, ref } from 'vue'
 import { MoonSharp, Sunny } from '@vicons/ionicons5'
 import IconImage from '../../../icons/icon.png'
-import { getEngine, getEngineOptions, setEngine } from '../../../utils/cookie'
+import { getEngine, getEngineOptions, setEngine, getTabLogo, getAIOptions } from '../../../utils/cookie'
 
 export default defineComponent({
   name: 'NewTab',
@@ -75,7 +87,7 @@ export default defineComponent({
       changeTheme()
       active.value = value
     }
-
+    const logo = ref(getTabLogo() || 'PINE_STORM')
     const keyword = ref('')
     const currentEngine = ref(getEngine().value)
     const handleUpdateCurrentEngine = value => {
@@ -92,6 +104,13 @@ export default defineComponent({
       window.open(`${engine}${keyword.value}`)
     }
     const typeOptions = ['info', 'success', 'warning', 'error', 'default', 'primary', 'secondary']
+
+    const AIOptions = reactive(getAIOptions())
+    const handleAI = item => {
+      if (item.url) {
+        window.open(item.url)
+      }
+    }
     return {
       active,
       getTheme,
@@ -104,7 +123,10 @@ export default defineComponent({
       currentEngine,
       btnOptions,
       typeOptions,
-      handleUpdateCurrentEngine
+      handleUpdateCurrentEngine,
+      logo,
+      AIOptions,
+      handleAI
     }
   }
 })

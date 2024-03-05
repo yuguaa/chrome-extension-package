@@ -23,6 +23,14 @@ const setTabUrl = url => {
   Cookies.set(URL_TOKEN, url)
 }
 
+const TAB_LOGO_TOKEN = 'PINE_STORM_TAB_LOGO'
+const getTabLogo = () => {
+  return Cookies.get(TAB_LOGO_TOKEN)
+}
+const setTabLogo = logo => {
+  Cookies.set(TAB_LOGO_TOKEN, logo)
+}
+
 const ENGINE_TOKEN = 'PINE_STORM_ENGINE'
 const ENGINE_OPTIONS_TOKEN = 'PINE_STORM_ENGINE_OPTIONS'
 const defaultOptions = [
@@ -54,4 +62,52 @@ const setEngineOptions = options => {
 const getEngineOptions = () => {
   return JSON.parse(Cookies.get(ENGINE_OPTIONS_TOKEN) || JSON.stringify(defaultOptions))
 }
-export { getLocalTheme, setLocalTheme, getTabUrl, setTabUrl, getEngine, setEngine, getEngineOptions, setEngineOptions }
+
+const AI_TOKEN = 'PINE_STORM_AI'
+const defaultAIOptions = [
+  {
+    label: '豆包',
+    value: 'Bytedance',
+    url: 'https://www.doubao.com/chat/',
+    logo: 'https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/FileBizType.BIZ_BOT_ICON/3251350_1697011106512121056.png~tplv-a9rns2rl98-icon-tiny.jpeg?rk3s=9956f44f&x-expires=1712192965&x-signature=nE2dClolpj%2BNqGbR29vTM%2Beg2fo%3D'
+  },
+  {
+    label: 'ChatGPT',
+    value: 'OpenAI',
+    url: 'https://chat.openai.com/',
+    logo: 'https://t10.baidu.com/it/u=3001416051,198333688&fm=30&app=106&f=JPEG?w=640&h=640&s=A6938D6264C55AF6101FC252020010FD'
+  },
+  {
+    label: 'Gemini',
+    value: 'Google',
+    url: 'https://gemini.google.com/app',
+    logo: 'https://tm-image.tianyancha.com/tm/bd620bd9afb1c8056f49de82383587de.jpg'
+  },
+  {
+    label: '通义千问',
+    value: 'Alibaba',
+    url: 'https://tongyi.aliyun.com/qianwen',
+    logo: 'https://img.alicdn.com/imgextra/i3/O1CN01sffRIx1nb3dXCKdFC_!!6000000005107-2-tps-1024-1024.png'
+  }
+]
+const setAIOptions = options => {
+  Cookies.set(AI_TOKEN, JSON.stringify(options || []))
+}
+const getAIOptions = () => {
+  return JSON.parse(Cookies.get(AI_TOKEN) || JSON.stringify(defaultAIOptions))
+}
+
+export {
+  getLocalTheme,
+  setLocalTheme,
+  getTabUrl,
+  setTabUrl,
+  getEngine,
+  setEngine,
+  getEngineOptions,
+  setEngineOptions,
+  getTabLogo,
+  setTabLogo,
+  getAIOptions,
+  setAIOptions
+}
