@@ -6,6 +6,12 @@
     <n-form-item label="LOGO:" path="logo">
       <n-input v-model:value="formValue.logo" type="text" placeholder="请输入" />
     </n-form-item>
+    <n-form-item label="LOGO_TYPE:" path="logoType">
+      <n-select v-model:value="formValue.logoType" :options="logoTypeOptions" />
+    </n-form-item>
+    <n-form-item label="NAME:" path="name">
+      <n-input v-model:value="formValue.name" type="text" placeholder="请输入" />
+    </n-form-item>
     <n-form-item>
       <n-button @click="handleSetUrl">设置</n-button>
     </n-form-item>
@@ -14,14 +20,25 @@
 <script>
 import { useMessage } from 'naive-ui'
 import { ref, defineComponent, reactive } from 'vue'
-import { getTabUrl, setTabUrl, getTabLogo, setTabLogo } from '../../../../utils/cookie'
+import {
+  getTabUrl,
+  setTabUrl,
+  getTabLogo,
+  setTabLogo,
+  getTabName,
+  setTabName,
+  getLogoType,
+  setLogoType
+} from '../../../../utils/cookie'
 export default defineComponent({
   setup() {
     const message = useMessage()
     const formRef = ref(null)
     const formValue = reactive({
       url: getTabUrl() || '',
-      logo: getTabLogo() || 'PINE_STORM'
+      logo: getTabLogo() || 'PINE_STORM',
+      logoType: getLogoType(),
+      name: getTabName() || 'PINE_STORM'
     })
     const rules = {
       // url: { required: true, message: '请输入URL', trigger: 'blur' }
@@ -31,6 +48,8 @@ export default defineComponent({
         if (!errors) {
           setTabUrl(formValue.url)
           setTabLogo(formValue.logo)
+          setLogoType(formValue.logoType)
+          setTabName(formValue.name)
           message.success('设置成功')
         } else {
           console.log(errors)
@@ -38,7 +57,15 @@ export default defineComponent({
         }
       })
     }
+    const logoTypeOptions = [
+      { value: 'primary', label: 'primary' },
+      { value: 'success', label: 'success' },
+      { value: 'warning', label: 'warning' },
+      { value: 'error', label: 'error' },
+      { value: 'info', label: 'info' }
+    ]
     return {
+      logoTypeOptions,
       formRef,
       formValue,
       rules,

@@ -1,4 +1,7 @@
 import { createApp } from 'vue'
+import { getTabName } from '../utils/cookie'
+const name = getTabName()
+document.title = name || 'PINE STORM'
 import 'tailwindcss/tailwind.css'
 import naive from 'naive-ui'
 import App from './App.vue'

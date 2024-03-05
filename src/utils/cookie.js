@@ -23,12 +23,28 @@ const setTabUrl = url => {
   Cookies.set(URL_TOKEN, url)
 }
 
+const TAB_NAME_TOKEN = 'PINE_STORM_TAB_NAME'
+const getTabName = () => {
+  return Cookies.get(TAB_NAME_TOKEN)
+}
+const setTabName = name => {
+  Cookies.set(TAB_NAME_TOKEN, name)
+}
+
 const TAB_LOGO_TOKEN = 'PINE_STORM_TAB_LOGO'
 const getTabLogo = () => {
   return Cookies.get(TAB_LOGO_TOKEN)
 }
 const setTabLogo = logo => {
   Cookies.set(TAB_LOGO_TOKEN, logo)
+}
+
+const LOGO_TYPE_TOKEN = 'PINE_STORM_LOGO_TYPE'
+const getLogoType = () => {
+  return Cookies.get(LOGO_TYPE_TOKEN)
+}
+const setLogoType = type => {
+  Cookies.set(LOGO_TYPE_TOKEN, type)
 }
 
 const ENGINE_TOKEN = 'PINE_STORM_ENGINE'
@@ -98,6 +114,8 @@ const getAIOptions = () => {
 }
 
 export {
+  getTabName,
+  setTabName,
   getLocalTheme,
   setLocalTheme,
   getTabUrl,
@@ -107,6 +125,8 @@ export {
   getEngineOptions,
   setEngineOptions,
   getTabLogo,
+  getLogoType,
+  setLogoType,
   setTabLogo,
   getAIOptions,
   setAIOptions
