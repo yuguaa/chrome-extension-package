@@ -54,10 +54,15 @@
             </n-el>
             <n-el class="mt-40">
               <n-space :size="40">
-                <n-el :key="index" v-for="(item, index) in AIOptions" @click="handleAI(item)">
+                <n-el
+                  class="border-[1px] border-[var(--primary-color)] p-4 rounded-sm cursor-pointer"
+                  :key="index"
+                  v-for="(item, index) in AIOptions"
+                  @click="handleAI(item)"
+                >
                   <n-badge :type="typeOptions[index]" :value="item.label">
-                    <n-avatar class="cursor-pointer" v-if="item.logo" :size="80" :src="item.logo"></n-avatar>
-                    <n-avatar class="cursor-pointer" v-else :size="80" :src="item.logo">
+                    <n-avatar v-if="item.logo" :size="80" :src="item.logo"></n-avatar>
+                    <n-avatar v-else :size="80" :src="item.logo">
                       {{ item.label }}
                     </n-avatar>
                   </n-badge>
