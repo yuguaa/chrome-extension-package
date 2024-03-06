@@ -113,6 +113,22 @@ const getAIOptions = () => {
   return JSON.parse(Cookies.get(AI_TOKEN) || JSON.stringify(defaultAIOptions))
 }
 
+const BG_TOKEN = 'PINE_STORM_BG'
+const getBg = () => {
+  return Cookies.get(BG_TOKEN)
+}
+const setBg = bg => {
+  Cookies.set(BG_TOKEN, bg)
+}
+
+const BG_FILTER_TOKEN = 'PINE_STORM_BG_FILTER'
+const getBgFilter = () => {
+  return Cookies.get(BG_FILTER_TOKEN)
+}
+const setBgFilter = filter => {
+  Cookies.set(BG_FILTER_TOKEN, filter)
+}
+
 export {
   getTabName,
   setTabName,
@@ -129,5 +145,9 @@ export {
   setLogoType,
   setTabLogo,
   getAIOptions,
-  setAIOptions
+  setAIOptions,
+  getBg,
+  setBg,
+  getBgFilter,
+  setBgFilter
 }

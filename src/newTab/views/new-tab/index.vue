@@ -1,5 +1,6 @@
 <template>
-  <n-el class="flex flex-col w-full h-screen">
+  <n-el class="flex flex-col w-full h-screen relative">
+    <n-el class="absolute z-[-1] top-0 left-0 w-full h-full" :style="bgStyle"></n-el>
     <n-el
       class="h-56 leading-[56px] flex justify-between items-center px-20 border-b-[1px] border-[var(--primary-color)]"
     >
@@ -18,7 +19,7 @@
       </n-switch>
     </n-el>
     <n-el class="flex-1 flex items-center justify-center">
-      <n-card class="h-full w-full">
+      <n-el class="h-full w-full">
         <n-el class="h-full flex justify-center">
           <n-el class="flex flex-col items-center mt-200">
             <n-el class="flex items-center">
@@ -61,8 +62,14 @@
                   @click="handleAI(item)"
                 >
                   <n-badge :type="typeOptions[index]" :value="item.label">
-                    <n-avatar v-if="item.logo" :size="80" :src="item.logo"></n-avatar>
-                    <n-avatar v-else :size="80" :src="item.logo">
+                    <n-avatar
+                      color="transparent"
+                      object-fit="scale-down"
+                      v-if="item.logo"
+                      :size="80"
+                      :src="item.logo"
+                    ></n-avatar>
+                    <n-avatar color="transparent" object-fit="scale-down" v-else :size="80" :src="item.logo">
                       {{ item.label }}
                     </n-avatar>
                   </n-badge>
@@ -71,16 +78,25 @@
             </n-el>
           </n-el>
         </n-el>
-      </n-card>
+      </n-el>
     </n-el>
   </n-el>
 </template>
 
 <script>
-import { defineComponent, inject, reactive, ref } from 'vue'
+import { computed, defineComponent, inject, reactive, ref } from 'vue'
 import { MoonSharp, Sunny } from '@vicons/ionicons5'
 import IconImage from '../../../icons/icon.png'
-import { getEngine, getEngineOptions, setEngine, getTabLogo, getAIOptions, getLogoType } from '../../../utils/cookie'
+import {
+  getEngine,
+  getEngineOptions,
+  setEngine,
+  getTabLogo,
+  getAIOptions,
+  getLogoType,
+  getBg,
+  getBgFilter
+} from '../../../utils/cookie'
 
 export default defineComponent({
   name: 'NewTab',
@@ -122,6 +138,15 @@ export default defineComponent({
         window.open(item.url)
       }
     }
+    const bg = getBg()
+    const bgFilter = getBgFilter()
+    const bgStyle = computed(() => {
+      return {
+        background: `url(${bg}) no-repeat center center / cover`,
+        filter: bgFilter
+      }
+    })
+
     return {
       active,
       getTheme,
@@ -138,7 +163,10 @@ export default defineComponent({
       logo,
       logoType,
       AIOptions,
-      handleAI
+      handleAI,
+      bg,
+      bgStyle,
+      bgFilter
     }
   }
 })
