@@ -45,7 +45,7 @@
                 <n-button
                   v-for="(item, index) in btnOptions"
                   ghost
-                  :type="typeOptions[index]"
+                  :type="getRandomType()"
                   :key="index"
                   @click="useSearch(item.engine)"
                 >
@@ -61,7 +61,7 @@
                   v-for="(item, index) in AIOptions"
                   @click="handleAI(item)"
                 >
-                  <n-badge :type="typeOptions[index]" :value="item.label">
+                  <n-badge :type="getRandomType()" :value="item.label">
                     <n-avatar
                       color="transparent"
                       object-fit="scale-down"
@@ -130,8 +130,10 @@ export default defineComponent({
     const useSearch = engine => {
       window.open(`${engine}${keyword.value}`)
     }
-    const typeOptions = ['info', 'success', 'warning', 'error', 'default', 'primary', 'secondary']
-
+    const typeOptions = ['info', 'success', 'warning', 'error']
+    const getRandomType = () => {
+      return typeOptions[Math.floor(Math.random() * typeOptions.length)]
+    }
     const AIOptions = reactive(getAIOptions())
     const handleAI = item => {
       if (item.url) {
@@ -159,6 +161,7 @@ export default defineComponent({
       currentEngine,
       btnOptions,
       typeOptions,
+      getRandomType,
       handleUpdateCurrentEngine,
       logo,
       logoType,
