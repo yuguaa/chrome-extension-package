@@ -70,7 +70,7 @@
                       :src="item.logo"
                     ></n-avatar>
                     <n-avatar color="transparent" object-fit="scale-down" v-else :size="80" :src="item.logo">
-                      {{ item.label }}
+                      <n-el class="text-[var(--primary-color)]">{{ item.label }}</n-el>
                     </n-avatar>
                   </n-badge>
                 </n-el>

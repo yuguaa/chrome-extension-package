@@ -1,4 +1,3 @@
-import Cookies from 'js-cookie'
 import { darkTheme } from 'naive-ui'
 
 const THEME_TOKEN = 'PINE_STORM_THEME'
@@ -7,44 +6,44 @@ const THEME_TOKEN = 'PINE_STORM_THEME'
  * @returns {string|null} The local theme if it is 'dark', otherwise null.
  */
 const getLocalTheme = () => {
-  const localTheme = Cookies.get(THEME_TOKEN)
+  const localTheme = localStorage.getItem(THEME_TOKEN)
   if (localTheme === 'dark') return darkTheme
   return null
 }
 const setLocalTheme = theme => {
-  Cookies.set(THEME_TOKEN, theme)
+  localStorage.setItem(THEME_TOKEN, theme)
 }
 
 const URL_TOKEN = 'PINE_STORM_TAB_URL'
 const getTabUrl = () => {
-  return Cookies.get(URL_TOKEN)
+  return localStorage.getItem(URL_TOKEN)
 }
 const setTabUrl = url => {
-  Cookies.set(URL_TOKEN, url)
+  localStorage.setItem(URL_TOKEN, url)
 }
 
 const TAB_NAME_TOKEN = 'PINE_STORM_TAB_NAME'
 const getTabName = () => {
-  return Cookies.get(TAB_NAME_TOKEN)
+  return localStorage.getItem(TAB_NAME_TOKEN)
 }
 const setTabName = name => {
-  Cookies.set(TAB_NAME_TOKEN, name)
+  localStorage.setItem(TAB_NAME_TOKEN, name)
 }
 
 const TAB_LOGO_TOKEN = 'PINE_STORM_TAB_LOGO'
 const getTabLogo = () => {
-  return Cookies.get(TAB_LOGO_TOKEN)
+  return localStorage.getItem(TAB_LOGO_TOKEN)
 }
 const setTabLogo = logo => {
-  Cookies.set(TAB_LOGO_TOKEN, logo)
+  localStorage.setItem(TAB_LOGO_TOKEN, logo)
 }
 
 const LOGO_TYPE_TOKEN = 'PINE_STORM_LOGO_TYPE'
 const getLogoType = () => {
-  return Cookies.get(LOGO_TYPE_TOKEN)
+  return localStorage.getItem(LOGO_TYPE_TOKEN)
 }
 const setLogoType = type => {
-  Cookies.set(LOGO_TYPE_TOKEN, type)
+  localStorage.setItem(LOGO_TYPE_TOKEN, type)
 }
 
 const ENGINE_TOKEN = 'PINE_STORM_ENGINE'
@@ -67,16 +66,16 @@ const defaultOptions = [
   }
 ]
 const setEngine = engine => {
-  Cookies.set(ENGINE_TOKEN, JSON.stringify(engine || {}))
+  localStorage.setItem(ENGINE_TOKEN, JSON.stringify(engine || {}))
 }
 const getEngine = () => {
-  return JSON.parse(Cookies.get(ENGINE_TOKEN) || JSON.stringify(defaultOptions[0]))
+  return JSON.parse(localStorage.getItem(ENGINE_TOKEN) || JSON.stringify(defaultOptions[0]))
 }
 const setEngineOptions = options => {
-  Cookies.set(ENGINE_OPTIONS_TOKEN, JSON.stringify(options || []))
+  localStorage.setItem(ENGINE_OPTIONS_TOKEN, JSON.stringify(options || []))
 }
 const getEngineOptions = () => {
-  return JSON.parse(Cookies.get(ENGINE_OPTIONS_TOKEN) || JSON.stringify(defaultOptions))
+  return JSON.parse(localStorage.getItem(ENGINE_OPTIONS_TOKEN) || JSON.stringify(defaultOptions))
 }
 
 const AI_TOKEN = 'PINE_STORM_AI'
@@ -107,26 +106,26 @@ const defaultAIOptions = [
   }
 ]
 const setAIOptions = options => {
-  Cookies.set(AI_TOKEN, JSON.stringify(options || []))
+  localStorage.setItem(AI_TOKEN, JSON.stringify(options || []))
 }
 const getAIOptions = () => {
-  return JSON.parse(Cookies.get(AI_TOKEN) || JSON.stringify(defaultAIOptions))
+  return JSON.parse(localStorage.getItem(AI_TOKEN) || JSON.stringify(defaultAIOptions))
 }
 
 const BG_TOKEN = 'PINE_STORM_BG'
 const getBg = () => {
-  return Cookies.get(BG_TOKEN)
+  return localStorage.getItem(BG_TOKEN)
 }
 const setBg = bg => {
-  Cookies.set(BG_TOKEN, bg)
+  localStorage.setItem(BG_TOKEN, bg)
 }
 
 const BG_FILTER_TOKEN = 'PINE_STORM_BG_FILTER'
 const getBgFilter = () => {
-  return Cookies.get(BG_FILTER_TOKEN)
+  return localStorage.getItem(BG_FILTER_TOKEN)
 }
 const setBgFilter = filter => {
-  Cookies.set(BG_FILTER_TOKEN, filter)
+  localStorage.setItem(BG_FILTER_TOKEN, filter)
 }
 
 export {
