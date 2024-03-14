@@ -32,9 +32,12 @@
               />
               <n-input-group>
                 <n-input
+                  autofocus
                   class="keyword-input"
                   v-model:value="keyword"
                   :style="{ width: '400px' }"
+                  ref="inputRef"
+                  @keydown.stop
                   @keyup.enter="handleSearch"
                 />
                 <n-button type="primary" ghost @click.enter="handleSearch"> 搜 索 </n-button>
@@ -54,7 +57,7 @@
               </n-space>
             </n-el>
             <n-el class="mt-40">
-              <n-space :size="40">
+              <n-space class="max-w-[800px]" :size="40">
                 <n-el
                   class="border-[1px] border-[var(--primary-color)] p-4 rounded-sm cursor-pointer"
                   :key="index"
@@ -148,7 +151,11 @@ export default defineComponent({
         filter: bgFilter
       }
     })
-
+    const inputRef = ref(null)
+    const keydownFoo = e => {
+      inputRef.value.focus()
+    }
+    document.addEventListener('keydown', keydownFoo)
     return {
       active,
       getTheme,
@@ -169,7 +176,9 @@ export default defineComponent({
       handleAI,
       bg,
       bgStyle,
-      bgFilter
+      bgFilter,
+      inputRef,
+      keydownFoo
     }
   }
 })
