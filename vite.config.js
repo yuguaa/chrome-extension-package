@@ -21,6 +21,7 @@ export default defineConfig({
         popup: path.resolve(__dirname, 'src/popup/index.html'),
         contentPage: path.resolve(__dirname, 'src/contentPage/index.html'),
         newTab: path.resolve(__dirname, 'src/newTab/index.html'),
+        index: path.resolve(__dirname, 'src/index.html'),
         options: path.resolve(__dirname, 'src/options/index.html'),
         content: path.resolve(__dirname, 'src/content/content.js'),
         background: path.resolve(__dirname, 'src/background/service-worker.js')
