@@ -11,6 +11,9 @@ dependencies:
   vue:
     specifier: ^3.4.19
     version: 3.4.20
+  vue-draggable-plus:
+    specifier: ^0.4.0
+    version: 0.4.0(@types/sortablejs@1.15.8)
   vue-router:
     specifier: ^4.3.0
     version: 4.3.0(vue@3.4.20)
@@ -556,6 +559,10 @@ packages:
       undici-types: 5.26.5
     dev: true
 
+  /@types/sortablejs@1.15.8:
+    resolution: {integrity: sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg==}
+    dev: false
+
   /@vicons/ionicons5@0.12.0:
     resolution: {integrity: sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==}
     dev: true
@@ -1099,7 +1106,7 @@ packages:
     dev: true
 
   /image-size@0.5.5:
-    resolution: {integrity: sha1-Cd/Uq50g4p6xw+gLiZA3jfnjy5w=}
+    resolution: {integrity: sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==}
     engines: {node: '>=0.10.0'}
     hasBin: true
     requiresBuild: true
@@ -2005,6 +2012,18 @@ packages:
         optional: true
     dependencies:
       vue: 3.4.20
+    dev: false
+
+  /vue-draggable-plus@0.4.0(@types/sortablejs@1.15.8):
+    resolution: {integrity: sha512-CcvSopMmSZY9McCdQ56QsAydT5cZilx9LzLU0UIz6KDYe9ll6QnmNHN80t6wnxN402ZECSXc5X1dm/myiMFi+A==}
+    peerDependencies:
+      '@types/sortablejs': ^1.15.0
+      '@vue/composition-api': '*'
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@types/sortablejs': 1.15.8
     dev: false
 
   /vue-router@4.3.0(vue@3.4.20):

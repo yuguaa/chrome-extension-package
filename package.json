@@ -12,6 +12,7 @@
   "dependencies": {
     "pinia": "^2.1.7",
     "vue": "^3.4.19",
+    "vue-draggable-plus": "^0.4.0",
     "vue-router": "^4.3.0"
   },
   "devDependencies": {

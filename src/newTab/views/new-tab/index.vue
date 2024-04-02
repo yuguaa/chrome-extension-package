@@ -57,9 +57,9 @@
               </n-space>
             </n-el>
             <n-el class="mt-40">
-              <n-space class="max-w-[800px]" :size="40">
+              <n-space class="max-w-[900px]" :size="40" ref="dragContainer">
                 <n-el
-                  class="border-[1px] border-[var(--primary-color)] p-4 rounded-sm cursor-pointer"
+                  class="border-[1px] border-[var(--primary-color)] p-4 rounded-sm cursor-pointer draggable"
                   :key="index"
                   v-for="(item, index) in AIOptions"
                   @click="handleAI(item)"
@@ -87,7 +87,8 @@
 </template>
 
 <script>
-import { computed, defineComponent, inject, reactive, ref } from 'vue'
+import { computed, defineComponent, inject, onMounted, reactive, ref } from 'vue'
+import { useDraggable } from 'vue-draggable-plus'
 import { MoonSharp, Sunny } from '@vicons/ionicons5'
 import IconImage from '../../../icons/icon.png'
 import {
@@ -95,6 +96,7 @@ import {
   getEngineOptions,
   setEngine,
   getTabLogo,
+  setAIOptions,
   getAIOptions,
   getLogoType,
   getBg,
@@ -108,6 +110,7 @@ export default defineComponent({
     Sunny
   },
   setup() {
+    const dragContainer = ref(null)
     const themeInject = inject('theme')
     const { changeTheme, getTheme } = themeInject
     const btnOptions = getEngineOptions()
@@ -143,6 +146,21 @@ export default defineComponent({
         window.open(item.url)
       }
     }
+    // 返回值是一个对象，包含了一些方法，比如 start、destroy、pause 等
+    const draggable = useDraggable(dragContainer, AIOptions, {
+      animation: 150,
+      ghostClass: 'ghost',
+      onStart: () => {
+        console.log('start')
+      },
+      onUpdate: () => {
+        console.log('update')
+      },
+      onEnd: () => {
+        setAIOptions(AIOptions)
+      }
+    })
+
     const bg = getBg()
     const bgFilter = getBgFilter()
     const bgStyle = computed(() => {
@@ -155,8 +173,14 @@ export default defineComponent({
     const keydownFoo = e => {
       inputRef.value.focus()
     }
+
+    onMounted(() => {
+      draggable.start()
+    })
+
     document.addEventListener('keydown', keydownFoo)
     return {
+      dragContainer,
       active,
       getTheme,
       handleUpdateValue,
