@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.2.2",
+    "@vercel/speed-insights": "^1.0.10",
     "pinia": "^2.1.7",
     "vue": "^3.4.19",
     "vue-draggable-plus": "^0.4.0",

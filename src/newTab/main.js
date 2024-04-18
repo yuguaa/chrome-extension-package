@@ -1,5 +1,10 @@
 import { createApp } from 'vue'
 import { getTabName } from '../utils/cookie'
+import { inject } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
+inject()
+injectSpeedInsights();
 const name = getTabName()
 document.title = name || 'PINE STORM'
 import 'tailwindcss/tailwind.css'
