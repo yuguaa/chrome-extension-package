@@ -32,7 +32,7 @@ const setTabName = name => {
 
 const TAB_LOGO_TOKEN = 'PINE_STORM_TAB_LOGO'
 const getTabLogo = () => {
-  return localStorage.getItem(TAB_LOGO_TOKEN)
+  return localStorage.getItem(TAB_LOGO_TOKEN) || 'PINE-STORM'
 }
 const setTabLogo = logo => {
   localStorage.setItem(TAB_LOGO_TOKEN, logo)
@@ -40,7 +40,7 @@ const setTabLogo = logo => {
 
 const LOGO_TYPE_TOKEN = 'PINE_STORM_LOGO_TYPE'
 const getLogoType = () => {
-  return localStorage.getItem(LOGO_TYPE_TOKEN)
+  return localStorage.getItem(LOGO_TYPE_TOKEN) || 'primary'
 }
 const setLogoType = type => {
   localStorage.setItem(LOGO_TYPE_TOKEN, type)
@@ -84,7 +84,7 @@ const defaultAIOptions = [
     label: '豆包',
     value: 'Bytedance',
     url: 'https://www.doubao.com/chat/',
-    logo: 'https://p3-flow-imagex-sign.byteimg.com/ocean-cloud-tos/FileBizType.BIZ_BOT_ICON/3251350_1697011106512121056.png~tplv-a9rns2rl98-icon-tiny.jpeg?rk3s=9956f44f&x-expires=1712192965&x-signature=nE2dClolpj%2BNqGbR29vTM%2Beg2fo%3D'
+    logo: 'https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/FileBizType.BIZ_BOT_ICON/4180773176086868_1709203591079450233_5Y6fJgvsfc.jpeg~tplv-a9rns2rl98-icon-tiny.jpeg?rk3s=6823e3d0&x-expires=1715996512&x-signature=rTYYx188Ach761uomaRvzMIglJ0%3D'
   },
   {
     label: 'ChatGPT',
@@ -103,6 +103,36 @@ const defaultAIOptions = [
     value: 'Alibaba',
     url: 'https://tongyi.aliyun.com/qianwen',
     logo: 'https://img.alicdn.com/imgextra/i3/O1CN01sffRIx1nb3dXCKdFC_!!6000000005107-2-tps-1024-1024.png'
+  },
+  {
+    label: '火山翻译',
+    value: 'Bytedance',
+    url: 'https://translate.volcengine.com/',
+    logo: 'https://img0.baidu.com/it/u=1564665153,4099875505&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+  },
+  {
+    label: '高德地图',
+    value: 'amap',
+    url: 'https://amap.com/',
+    logo: 'https://img1.baidu.com/it/u=4113178521,2210761658&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500'
+  },
+  {
+    label: 'tailwindcss',
+    value: 'tailwindcss',
+    url: 'https://www.tailwindcss.cn/docs/installation',
+    logo: 'https://img1.baidu.com/it/u=2986153823,2646607320&fm=253&fmt=auto&app=138&f=PNG?w=280&h=280'
+  },
+  {
+    label: 'AntdV',
+    value: 'Ant Design Vue',
+    url: 'https://1x.antdv.com/docs/vue/introduce-cn/',
+    logo: 'https://img2.baidu.com/it/u=1082254775,796461838&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500'
+  },
+  {
+    label: 'github',
+    value: 'github',
+    url: 'https://github.com/',
+    logo: 'https://img2.baidu.com/it/u=1801988444,1636727480&fm=253&fmt=auto&app=138&f=JPEG?w=444&h=429'
   }
 ]
 const setAIOptions = options => {

@@ -15,7 +15,7 @@
     <n-form-item label="背景:" path="bg">
       <n-input v-model:value="formValue.bg" type="text" placeholder="请输入" />
     </n-form-item>
-    <n-form-item label="背景模糊:" path="bgFilter">
+    <n-form-item label="背景滤镜:" path="bgFilter">
       <n-input v-model:value="formValue.bgFilter" type="text" placeholder="请输入" />
     </n-form-item>
     <n-form-item>
