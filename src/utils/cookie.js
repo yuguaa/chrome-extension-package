@@ -133,6 +133,12 @@ const defaultAIOptions = [
     value: 'github',
     url: 'https://github.com/',
     logo: 'https://img2.baidu.com/it/u=1801988444,1636727480&fm=253&fmt=auto&app=138&f=JPEG?w=444&h=429'
+  },
+  {
+    label: 'bilibili',
+    value: 'bilibili',
+    url: 'https://bilibili.com/',
+    logo: ''
   }
 ]
 const setAIOptions = options => {
