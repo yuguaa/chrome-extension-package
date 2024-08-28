@@ -163,7 +163,10 @@ const getBgFilter = () => {
 const setBgFilter = filter => {
   localStorage.setItem(BG_FILTER_TOKEN, filter)
 }
-
+const getRandomColor = () => {
+  const color = Math.floor(Math.random() * 0xffffff).toString(16)
+  return `#${color.padStart(6, '0')}`
+}
 export {
   getTabName,
   setTabName,
@@ -184,5 +187,6 @@ export {
   getBg,
   setBg,
   getBgFilter,
-  setBgFilter
+  setBgFilter,
+  getRandomColor
 }
