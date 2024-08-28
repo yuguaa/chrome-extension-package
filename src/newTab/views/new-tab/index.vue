@@ -332,11 +332,12 @@ export default defineComponent({
     }
     const handleSetShortCut = () => {
       formRef.value?.validate(errors => {
-        const index = AIOptions.findIndex(item => item.value === formValue.value)
-        AIOptions[index] = formValue
-        setAIOptions(AIOptions)
         if (!errors) {
+          const index = AIOptions.findIndex(item => item.value === formValue.value)
+          AIOptions[index] = formValue
+          setAIOptions(AIOptions)
           message.success('设置成功')
+          editShortCutShow.value = false
         } else {
           console.log(errors)
           message.error('请正确填写')
@@ -379,7 +380,8 @@ export default defineComponent({
       if (e.keyCode === 9) {
         changeTab()
       } else {
-        inputRef.value.focus()
+        // inputRef.value.focus()
+        console.log(`🚀 ~ inputRef.value:`, inputRef.value)
       }
     }
     document.addEventListener('keydown', keydownFoo)
