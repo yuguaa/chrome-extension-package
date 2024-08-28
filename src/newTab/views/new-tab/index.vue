@@ -208,6 +208,7 @@
 
 <script>
 import gsap from 'gsap'
+import { cloneDeep } from 'lodash'
 import { computed, defineComponent, inject, onMounted, reactive, ref } from 'vue'
 import { useMessage } from 'naive-ui'
 import { useDraggable } from 'vue-draggable-plus'
@@ -352,10 +353,13 @@ export default defineComponent({
     }
     const editShortCutShow = ref(false)
     const rightClickShortCut = item => {
-      formValue.label = item.label
-      formValue.value = item.value
-      formValue.url = item.url
-      formValue.logo = item.logo
+      console.log(`🚀 ~ item:`, item)
+
+      const obj = cloneDeep(item)
+      formValue.label = obj.label
+      formValue.value = obj.value
+      formValue.url = obj.url
+      formValue.logo = obj.logo
       editShortCutShow.value = true
     }
     // 返回值是一个对象，包含了一些方法，比如 start、destroy、pause 等
