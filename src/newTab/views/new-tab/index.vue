@@ -338,6 +338,10 @@ export default defineComponent({
           AIOptions[index] = formValue
           setAIOptions(AIOptions)
           message.success('设置成功')
+          formValue.label = ''
+          formValue.value = ''
+          formValue.url = ''
+          formValue.logo = ''
           editShortCutShow.value = false
         } else {
           console.log(errors)
