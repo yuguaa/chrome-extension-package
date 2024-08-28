@@ -1,5 +1,81 @@
 const list = [
   {
+    id: 51000,
+    name: '常见',
+    links: [
+      {
+        id: 1,
+        name: '豆包',
+        changjia: 'Bytedance',
+        url: 'https://www.doubao.com/chat/',
+        logo: 'https://p9-flow-imagex-sign.byteimg.com/ocean-cloud-tos/FileBizType.BIZ_BOT_ICON/4180773176086868_1709203591079450233_5Y6fJgvsfc.jpeg~tplv-a9rns2rl98-icon-tiny.jpeg?rk3s=6823e3d0&x-expires=1715996512&x-signature=rTYYx188Ach761uomaRvzMIglJ0%3D'
+      },
+      {
+        id: 2,
+        name: 'ChatGPT',
+        changjia: 'OpenAI',
+        url: 'https://chat.openai.com/',
+        logo: 'https://t10.baidu.com/it/u=3001416051,198333688&fm=30&app=106&f=JPEG?w=640&h=640&s=A6938D6264C55AF6101FC252020010FD'
+      },
+      {
+        id: 3,
+        name: 'Gemini',
+        changjia: 'Google',
+        url: 'https://gemini.google.com/app',
+        logo: 'https://tm-image.tianyancha.com/tm/bd620bd9afb1c8056f49de82383587de.jpg'
+      },
+      {
+        id: 4,
+        name: '通义千问',
+        changjia: 'Alibaba',
+        url: 'https://tongyi.aliyun.com/qianwen',
+        logo: 'https://img.alicdn.com/imgextra/i3/O1CN01sffRIx1nb3dXCKdFC_!!6000000005107-2-tps-1024-1024.png'
+      },
+      {
+        id: 5,
+        name: '火山翻译',
+        changjia: 'Bytedance',
+        url: 'https://translate.volcengine.com/',
+        logo: 'https://img0.baidu.com/it/u=1564665153,4099875505&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500'
+      },
+      {
+        id: 6,
+        name: '高德地图',
+        changjia: 'amap',
+        url: 'https://amap.com/',
+        logo: 'https://img1.baidu.com/it/u=4113178521,2210761658&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500'
+      },
+      {
+        id: 7,
+        name: 'tailwindcss',
+        changjia: 'tailwindcss',
+        url: 'https://www.tailwindcss.cn/docs/installation',
+        logo: 'https://img1.baidu.com/it/u=2986153823,2646607320&fm=253&fmt=auto&app=138&f=PNG?w=280&h=280'
+      },
+      {
+        id: 8,
+        name: 'AntdV',
+        changjia: 'Ant Design Vue',
+        url: 'https://1x.antdv.com/docs/vue/introduce-cn/',
+        logo: 'https://img2.baidu.com/it/u=1082254775,796461838&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500'
+      },
+      {
+        id: 9,
+        name: 'github',
+        changjia: 'github',
+        url: 'https://github.com/',
+        logo: 'https://img2.baidu.com/it/u=1801988444,1636727480&fm=253&fmt=auto&app=138&f=JPEG?w=444&h=429'
+      },
+      {
+        id: 10,
+        name: 'bilibili',
+        changjia: 'bilibili',
+        url: 'https://bilibili.com/',
+        logo: ''
+      }
+    ]
+  },
+  {
     id: 51069,
     name: 'AI',
     icon: 'star',

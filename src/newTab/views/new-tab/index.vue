@@ -184,9 +184,9 @@
             <n-form-item path="label" label="名称">
               <n-input v-model:value="formValue.label" />
             </n-form-item>
-            <n-form-item path="value" label="厂家">
+            <!-- <n-form-item path="value" label="厂家">
               <n-input v-model:value="formValue.value" />
-            </n-form-item>
+            </n-form-item> -->
             <n-form-item path="url" label="链接">
               <n-input v-model:value="formValue.url" />
             </n-form-item>
@@ -209,7 +209,7 @@
 <script>
 import gsap from 'gsap'
 import { cloneDeep } from 'lodash'
-import { computed, defineComponent, inject, onMounted, reactive, ref } from 'vue'
+import { computed, defineComponent, inject, onMounted, reactive, ref, toRaw } from 'vue'
 import { useMessage } from 'naive-ui'
 import { useDraggable } from 'vue-draggable-plus'
 import { MoonSharp, Sunny, Apps, Search, CloseCircleSharp } from '@vicons/ionicons5'
@@ -306,10 +306,9 @@ export default defineComponent({
       gsap.to(dom, { left: '-100%' })
     }
     const rightClick = item => {
-      console.log(item)
       const shortCut = {
         label: item.name,
-        value: item.name,
+        id: item.id,
         url: item.url,
         logo: item.logo || `https://picsum.photos/200/200?random=${Math.random()}`
       }
@@ -321,27 +320,26 @@ export default defineComponent({
 
     const formValue = reactive({
       label: '',
-      value: '',
+      id: '',
       url: '',
       logo: ''
     })
     const rules = {
       label: { required: true, message: '填写label', trigger: 'blur' },
-      value: { required: true, message: '填写value', trigger: 'blur' },
+      // value: { required: true, message: '填写value', trigger: 'blur' },
       url: { required: true, message: '填写url', trigger: 'blur' },
       logo: { required: true, message: '填写logo', trigger: 'blur' }
     }
     const handleSetShortCut = () => {
       formRef.value?.validate(errors => {
         if (!errors) {
-          const index = AIOptions.findIndex(item => item.value === formValue.value)
-          AIOptions[index] = formValue
+          const index = AIOptions.findIndex(item => {
+            console.log(`🚀 ~ item:`, item)
+            return item.id === formValue.id
+          })
+          AIOptions[index] = cloneDeep(formValue)
           setAIOptions(AIOptions)
           message.success('设置成功')
-          formValue.label = ''
-          formValue.value = ''
-          formValue.url = ''
-          formValue.logo = ''
           editShortCutShow.value = false
         } else {
           console.log(errors)
@@ -350,22 +348,22 @@ export default defineComponent({
       })
     }
     const handleDelShortCut = () => {
-      const index = AIOptions.findIndex(item => item.value === formValue.value)
+      const index = AIOptions.findIndex(item => item.id === formValue.id)
       AIOptions.splice(index, 1)
       setAIOptions(AIOptions)
       editShortCutShow.value = false
     }
     const editShortCutShow = ref(false)
     const rightClickShortCut = item => {
-      console.log(`🚀 ~ item:`, item)
-
-      const obj = cloneDeep(item)
+      const obj = toRaw(item)
       formValue.label = obj.label
-      formValue.value = obj.value
+      formValue.id = obj.id
       formValue.url = obj.url
       formValue.logo = obj.logo
+
       editShortCutShow.value = true
     }
+
     // 返回值是一个对象，包含了一些方法，比如 start、destroy、pause 等
     const draggable = useDraggable(dragContainer, AIOptions, {
       animation: 150,
