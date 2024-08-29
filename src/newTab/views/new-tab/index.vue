@@ -95,7 +95,7 @@
           </n-el>
         </n-el>
       </n-el>
-      <n-card class="tabs bg-white absolute z-10 -left-full top-0" title="分类">
+      <n-card class="tabs absolute z-10 -left-full top-0" title="分类">
         <template #header-extra>
           <n-button circle tertiary @click="changeTab">
             <template #icon>
